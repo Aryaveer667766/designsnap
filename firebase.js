@@ -1,7 +1,8 @@
 // firebase.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-import { getDatabase, ref as dbRef, push, set, onValue, remove, update } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+import { getDatabase, ref as dbRef, push, set, onValue, remove } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
 import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-storage.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-analytics.js";
 
 // Firebase config
 const firebaseConfig = {
@@ -17,7 +18,9 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 const db = getDatabase(app);
 const storage = getStorage(app);
 
-export { db, storage, dbRef, push, set, onValue, remove, update, sRef, uploadBytesResumable, getDownloadURL, deleteObject };
+// Export modules
+export { db, storage, dbRef, sRef, push, set, onValue, remove, uploadBytesResumable, getDownloadURL, deleteObject };
