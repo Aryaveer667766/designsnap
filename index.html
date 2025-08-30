@@ -4,144 +4,34 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Design Snap Studios</title>
-<link rel="stylesheet" href="style.css">
 <style>
-/* Dark professional styling */
-body {
-  font-family: 'Inter', sans-serif;
-  background: #121212;
-  color: #e0e0e0;
-  margin: 0;
-  padding: 0;
-}
-header {
-  background: linear-gradient(90deg, #1f1f1f, #2c2c2c);
-  color: #fff;
-  padding: 25px 0;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-}
-header h1 {
-  margin: 0;
-  font-size: 2.5em;
-}
-header p {
-  margin-top: 5px;
-  font-size: 1.1em;
-  color: #b0b0b0;
-}
-main {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 0 20px;
-}
-section {
-  background: #1e1e1e;
-  border-radius: 12px;
-  padding: 25px;
-  margin-bottom: 30px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.6);
-}
-h2 {
-  margin-top: 0;
-  color: #00bfff;
-  border-bottom: 2px solid #00bfff;
-  display: inline-block;
-  padding-bottom: 5px;
-}
-input[type="file"], input[type="text"], button {
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #444;
-  margin-top: 10px;
-  width: 100%;
-  box-sizing: border-box;
-  background: #2a2a2a;
-  color: #fff;
-  font-size: 1em;
-}
-button {
-  cursor: pointer;
-  font-weight: 600;
-  border: none;
-  background: #00bfff;
-  transition: all 0.3s ease;
-}
-button:hover {
-  background: #009acd;
-  transform: scale(1.05);
-}
-.preview-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 15px;
-}
-.preview-grid img {
-  width: 110px;
-  height: 110px;
-  object-fit: cover;
-  border-radius: 12px;
-  border: 2px solid #00bfff;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-.preview-grid img:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 20px rgba(0,191,255,0.5);
-}
-.link-box a {
-  display: inline-block;
-  margin-top: 10px;
-  color: #fff;
-  background: #00bfff;
-  padding: 10px 18px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-.link-box a:hover {
-  background: #009acd;
-  transform: scale(1.05);
-}
-#statusMsg {
-  margin-top: 10px;
-  font-weight: 500;
-  color: #00ff80;
-}
-@media (max-width: 600px) {
-  .preview-grid img {
-    width: 80px;
-    height: 80px;
-  }
-}
+body { font-family: 'Poppins', sans-serif; background: #111; color: #eee; padding: 30px; text-align: center;}
+h1 { color: #f39c12; }
+#preview img { width: 150px; margin: 10px; border-radius: 8px; }
+#userLink a { color: #1abc9c; word-break: break-all; }
+button { background: #f39c12; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; color: #111; margin-top: 10px; }
+button:hover { background: #e67e22; }
+
+#chatBox { background:#222;padding:10px;height:200px;overflow-y:auto;border-radius:8px;margin:10px 0;}
+#chatInput { width:70%;padding:8px;border-radius:5px;border:none;}
 </style>
 </head>
 <body>
+<h1>Design Snap Studios</h1>
 
-<header>
-  <h1>📸 Design Snap Studios</h1>
-  <p>Upload your photos and get your link from Design Snap</p>
-</header>
+<input type="file" id="photoUpload" multiple accept="image/*">
+<div id="preview"></div>
+<button id="uploadBtn">Upload Photos</button>
+<p id="statusMsg"></p>
 
-<main>
-  <!-- Upload Section -->
-  <section>
-    <h2>Upload Photos</h2>
-    <input type="file" id="photoUpload" accept="image/*" multiple>
-    <button id="uploadBtn">Upload</button>
-    <p id="statusMsg"></p>
-    <div id="preview" class="preview-grid"></div>
-  </section>
+<h2>Your Link:</h2>
+<div id="userLink">⏳ Waiting for Design Snap to send your link...</div>
 
-  <!-- Link Section -->
-  <section class="link-box">
-    <h2>Your Link</h2>
-    <div id="userLink">⏳ Waiting for Design Snap to send your link...</div>
-  </section>
-</main>
+<h2>Chat with Design Snap:</h2>
+<div id="chatBox"></div>
+<input type="text" id="chatInput" placeholder="Type your message">
+<button id="chatSend">Send</button>
 
-<script type="module" src="firebase.js"></script>
-<script type="module" src="user.js"></script>
+<script type="module" src="./user.js"></script>
 </body>
 </html>
