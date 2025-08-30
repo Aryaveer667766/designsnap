@@ -97,7 +97,6 @@ button:hover {
     flex-direction: column;
     height: 400px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-     justify-content: flex-end;
 }
 
 /* Chat messages box */
@@ -109,7 +108,6 @@ button:hover {
     background: #222;
     display: flex;
     flex-direction: column;
-     justify-content: flex-end;
 }
 
 /* Individual message bubbles */
@@ -122,6 +120,7 @@ button:hover {
     font-size: 14px;
     line-height: 1.4;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    width: fit-content; /* <-- This line was added */
 }
 
 /* Admin (left) messages */
@@ -171,24 +170,20 @@ button:hover {
     background: #e67e22;
 }
 
-}
 </style>
 </head>
 <body>
 <div class="container">
     <h1>Design Snap Studios</h1>
 
-    <!-- Upload Section -->
     <input type="file" id="photoUpload" multiple accept="image/*">
     <div id="preview"></div>
     <button id="uploadBtn">Upload Photos</button>
     <p id="statusMsg"></p>
 
-    <!-- User Link -->
     <h2>Your Link:</h2>
     <div id="userLink">⏳ Waiting for Design Snap to send your link...</div>
 
-    <!-- Chat Section -->
     <h2>Chat with Design Snap</h2>
     <div class="chat-container">
         <div id="chatBox"></div>
