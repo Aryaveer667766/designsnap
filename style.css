@@ -1,64 +1,77 @@
-/* Global Styles */
+/* ---------------- Global Styles ---------------- */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f0f3f7;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #f0f4f8, #d9e2ec);
   color: #333;
   margin: 0;
   padding: 0;
 }
 
 header {
-  background: #222;
+  background: linear-gradient(90deg, #0077ff, #00c6ff);
   color: #fff;
-  padding: 25px;
+  padding: 30px;
   text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 header h1 {
   margin: 0;
-  font-size: 2.2em;
+  font-size: 2.5em;
+  letter-spacing: 1px;
 }
 
 header p {
   margin-top: 5px;
-  font-size: 1em;
-  color: #ddd;
+  font-size: 1.1em;
+  color: rgba(255,255,255,0.85);
 }
 
 main {
-  max-width: 900px;
-  margin: 30px auto;
-  padding: 0 15px;
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
 }
 
-/* Sections */
+/* ---------------- Sections ---------------- */
 section {
   background: #fff;
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 25px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border-radius: 15px;
+  padding: 25px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: transform 0.2s;
+}
+
+section:hover {
+  transform: translateY(-3px);
 }
 
 section h2 {
   margin-top: 0;
   color: #0077ff;
+  font-size: 1.6em;
+  border-bottom: 2px solid #0077ff;
+  display: inline-block;
+  padding-bottom: 5px;
 }
 
-/* Buttons */
+/* ---------------- Buttons ---------------- */
 button {
   background: #0077ff;
   border: none;
   color: #fff;
-  padding: 10px 20px;
+  padding: 12px 25px;
   margin-top: 10px;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
 
 button:hover {
   background: #005ed6;
+  transform: scale(1.05);
 }
 
 .danger-btn {
@@ -67,53 +80,64 @@ button:hover {
 
 .danger-btn:hover {
   background: #d43f3f;
+  transform: scale(1.05);
 }
 
-/* Upload Preview Grid */
+/* ---------------- Upload Preview Grid ---------------- */
 .preview-grid {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 10px;
+  margin-top: 15px;
+  gap: 10px;
 }
 
 .preview-grid img {
-  width: 100px;
-  height: 100px;
+  width: 110px;
+  height: 110px;
   object-fit: cover;
-  margin: 5px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
+  border-radius: 12px;
+  border: 2px solid #0077ff;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
 }
 
-/* Link Box */
+.preview-grid img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+/* ---------------- Link Box ---------------- */
 .link-box a {
   display: inline-block;
   margin-top: 10px;
   color: #fff;
-  background: #0077ff;
-  padding: 8px 12px;
-  border-radius: 6px;
+  background: linear-gradient(90deg, #0077ff, #00c6ff);
+  padding: 10px 18px;
+  border-radius: 8px;
   text-decoration: none;
-  transition: all 0.2s ease;
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
 
 .link-box a:hover {
-  background: #005ed6;
+  background: linear-gradient(90deg, #005ed6, #00a2cc);
+  transform: scale(1.05);
 }
 
-/* Chat Box */
+/* ---------------- Chat Box ---------------- */
 .chat-box {
   text-align: left;
 }
 
 .chat-messages {
-  max-height: 250px;
+  max-height: 300px;
   overflow-y: auto;
   border: 1px solid #ddd;
-  padding: 10px;
-  border-radius: 8px;
-  background: #f9f9f9;
-  margin-bottom: 10px;
+  padding: 15px;
+  border-radius: 12px;
+  background: #f7f9fc;
+  margin-bottom: 12px;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .chat-user {
@@ -121,11 +145,13 @@ button:hover {
   background: #0077ff;
   color: #fff;
   display: inline-block;
-  padding: 6px 10px;
-  margin: 4px 0;
-  border-radius: 10px;
+  padding: 8px 14px;
+  margin: 6px 0;
+  border-radius: 20px 20px 0 20px;
   max-width: 70%;
   word-wrap: break-word;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  animation: fadeIn 0.3s ease;
 }
 
 .chat-admin {
@@ -133,36 +159,79 @@ button:hover {
   background: #e0e0e0;
   color: #333;
   display: inline-block;
-  padding: 6px 10px;
-  margin: 4px 0;
-  border-radius: 10px;
+  padding: 8px 14px;
+  margin: 6px 0;
+  border-radius: 20px 20px 20px 0;
   max-width: 70%;
   word-wrap: break-word;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  animation: fadeIn 0.3s ease;
 }
 
-/* File Items */
+/* ---------------- File Items ---------------- */
 .file-item {
   display: inline-block;
   text-align: center;
-  margin: 5px;
+  margin: 8px;
+  position: relative;
 }
 
 .file-item img {
-  border-radius: 8px;
-  border: 1px solid #ddd;
+  border-radius: 12px;
+  border: 2px solid #0077ff;
 }
 
-/* Input Fields */
-input[type="text"], input[type="file"], select {
-  padding: 10px;
+.file-item .deleteBtn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: #ff4c4c;
+  padding: 4px 8px;
+  font-size: 0.8em;
   border-radius: 6px;
-  border: 1px solid #ccc;
-  width: calc(100% - 22px);
-  margin-bottom: 10px;
-  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s;
 }
 
-/* Responsive */
+.file-item .deleteBtn:hover {
+  background: #d43f3f;
+  transform: scale(1.1);
+}
+
+/* ---------------- Inputs ---------------- */
+input[type="text"], input[type="file"], select {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: calc(100% - 26px);
+  margin-bottom: 12px;
+  box-sizing: border-box;
+  font-size: 1em;
+  transition: border 0.3s ease;
+}
+
+input[type="text"]:focus, select:focus {
+  border: 2px solid #0077ff;
+  outline: none;
+}
+
+/* ---------------- Analytics ---------------- */
+.analytics {
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.2em;
+  color: #0077ff;
+}
+
+/* ---------------- Animations ---------------- */
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(5px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* ---------------- Responsive ---------------- */
 @media (max-width: 600px) {
   .preview-grid img {
     width: 80px;
@@ -171,5 +240,9 @@ input[type="text"], input[type="file"], select {
 
   button {
     width: 100%;
+  }
+
+  .file-item {
+    display: block;
   }
 }
