@@ -3,113 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Design Snap Panel</title>
-<link rel="stylesheet" href="style.css">
+<title>Design Snap Admin</title>
 <style>
-/* Quick dark styling for admin page */
-header {
-  background: linear-gradient(90deg, #1f1f1f, #2c2c2c);
-  color: #fff;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-}
-h1 {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  font-size: 2.2em;
-}
-section {
-  background: #1e1e1e;
-  border-radius: 12px;
-  padding: 20px;
-  margin: 20px auto;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
-  max-width: 900px;
-}
-h2 {
-  color: #00bfff;
-  border-bottom: 2px solid #00bfff;
-  display: inline-block;
-  padding-bottom: 5px;
-}
-.file-item {
-  display: inline-block;
-  background: #2c2c2c;
-  border-radius: 12px;
-  margin: 10px;
-  padding: 10px;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-}
-.file-item img {
-  border-radius: 12px;
-  border: 2px solid #00bfff;
-  width: 120px;
-}
-.file-item a, .file-item button {
-  display: block;
-  margin-top: 8px;
-  color: #00bfff;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-weight: 500;
-  text-decoration: none;
-}
-.file-item button.danger-btn {
-  color: #ff4c4c;
-}
-.file-item button:hover, .file-item a:hover {
-  text-decoration: underline;
-}
-input[type="text"], button {
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #444;
-  margin-top: 10px;
-  width: 80%;
-  background: #2a2a2a;
-  color: #fff;
-}
-button {
-  cursor: pointer;
-  font-weight: 600;
-  border: none;
-  background: #00bfff;
-  transition: all 0.3s ease;
-}
-button:hover {
-  background: #009acd;
-  transform: scale(1.05);
-}
-button.danger-btn:hover {
-  background: #d43f3f;
-}
+body { font-family: 'Poppins', sans-serif; background: #111; color:#eee; padding: 30px; }
+h1 { color:#f39c12; }
+#uploadsContainer img { width:150px; margin:10px; border-radius:8px; }
+button { background:#f39c12; border:none; padding:8px 15px; border-radius:5px; cursor:pointer; color:#111; margin:5px; }
+button:hover { background:#e67e22; }
+
+#linkInput { width:60%; padding:8px; border-radius:5px; border:none; }
+#adminChatBox { background:#222; padding:10px; height:300px; overflow-y:auto; border-radius:8px; margin-top:20px;}
+#adminChatInput { width:70%;padding:8px;border-radius:5px;border:none;}
 </style>
 </head>
 <body>
-<header>
-  <h1>🛠️ Design Snap Panel</h1>
-</header>
+<h1>Design Snap</h1>
 
-<main>
-  <!-- Section: Uploaded Images -->
-  <section>
-    <h2>All Uploads</h2>
-    <div id="uploadsContainer"></div>
-  </section>
+<h2>Uploads</h2>
+<div id="uploadsContainer"></div>
 
-  <!-- Section: Send Link -->
-  <section>
-    <h2>Send Link to Users</h2>
-    <input type="text" id="linkInput" placeholder="Enter link">
-    <button id="sendLinkBtn">Send Link</button>
-    <button id="deleteLinkBtn" class="danger-btn">Delete Link</button>
-  </section>
-</main>
+<h2>Send Link to Users</h2>
+<input type="text" id="linkInput" placeholder="Enter link here">
+<button id="sendLinkBtn">Send Link</button>
+<button id="deleteLinkBtn">Delete Link</button>
 
-<script type="module" src="firebase.js"></script>
-<script type="module" src="admin.js"></script>
+<h2>Chat with Users:</h2>
+<div id="adminChatBox"></div>
+<input type="text" id="adminChatInput" placeholder="Type message">
+<button id="adminChatSend">Send</button>
+
+<script type="module" src="./admin.js"></script>
 </body>
 </html>
