@@ -1,4 +1,5 @@
-import { db, storage, dbRef, storageRef, push, set, onValue, uploadBytesResumable, getDownloadURL } from './firebase.js';
+// user.js
+import { db, storage, dbRef, storageRef, push, onValue, uploadBytesResumable, getDownloadURL } from './firebase.js';
 
 const uploadInput = document.getElementById('photoUpload');
 const uploadBtn = document.getElementById('uploadBtn');
@@ -41,4 +42,5 @@ uploadBtn.addEventListener('click', () => {
 onValue(dbRef(db, 'link'), snapshot => {
   const link = snapshot.val();
   if (link) userLinkDiv.innerHTML = `<a href="${link}" target="_blank">${link}</a>`;
+  else userLinkDiv.textContent = '⏳ Waiting for Design Snap to send your link...';
 });
