@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Design Snap Admin</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <style>
 body {
     font-family: 'Poppins', sans-serif;
@@ -17,13 +18,27 @@ h1 { color: #f39c12; font-weight: 600; }
 h2 { color: #1abc9c; font-weight: 600; margin-top: 30px; }
 
 /* Upload Section */
+.upload-item { display: inline-block; text-align: center; margin:10px; }
 #uploadsContainer { display:flex; flex-wrap:wrap; justify-content:center; }
 #uploadsContainer img { width:150px; height:150px; object-fit:cover; margin:10px; border-radius:8px; border:2px solid #f39c12; }
-.deleteBtn { background:#e74c3c; color:#fff; border:none; padding:5px 10px; border-radius:6px; cursor:pointer; margin-top:5px; }
+.deleteBtn { background:#e74c3c; color:#fff; border:none; padding:5px 10px; border-radius:6px; cursor:pointer; }
 .deleteBtn:hover { background:#c0392b; }
 
-#deleteAllBtn { background:#e74c3c; color:#fff; border:none; padding:8px 15px; border-radius:6px; cursor:pointer; margin:10px 0; }
+#deleteAllBtn, #downloadAllBtn {
+    color:#fff;
+    border:none;
+    padding:8px 15px;
+    border-radius:6px;
+    cursor:pointer;
+    margin: 10px 5px;
+    font-weight: 600;
+}
+#deleteAllBtn { background:#e74c3c; }
 #deleteAllBtn:hover { background:#c0392b; }
+#downloadAllBtn { background:#3498db; }
+#downloadAllBtn:hover { background:#2980b9; }
+#downloadAllBtn:disabled { background:#555; cursor:not-allowed; }
+
 
 #linkInput { width:60%; padding:8px; border-radius:5px; border:none; background:#222; color:#eee; }
 button { background:#f39c12; border:none; padding:8px 15px; border-radius:5px; cursor:pointer; color:#111; margin:5px; transition:0.3s; }
@@ -38,6 +53,8 @@ button:hover { background:#e67e22; }
     flex-direction: column;
     height: 400px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    max-width: 900px;
+    margin: 20px auto;
 }
 
 /* Chat messages box */
@@ -61,6 +78,7 @@ button:hover { background:#e67e22; }
     font-size: 14px;
     line-height: 1.4;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    width: fit-content;
 }
 
 /* Admin (left) messages */
@@ -110,15 +128,18 @@ button:hover { background:#e67e22; }
     background: #e67e22;
 }
 
-}
 </style>
 </head>
 <body>
-<h1>Design Snap</h1>
+<h1>Design Snap Admin</h1>
 
 <h2>Uploads</h2>
 <div id="uploadsContainer"></div>
-<button id="deleteAllBtn">Delete All Uploads</button>
+<div>
+    <button id="deleteAllBtn">Delete All Uploads</button>
+    <button id="downloadAllBtn">Download All as ZIP</button>
+</div>
+
 
 <h2>Send Link to Users</h2>
 <input type="text" id="linkInput" placeholder="Enter link here">
