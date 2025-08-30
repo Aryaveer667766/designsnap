@@ -1,4 +1,4 @@
-import { db, storage, dbRef, onValue, remove, set, sRef, deleteObject } from './firebase.js';
+import { db, storage, dbRef, onValue, remove, set, storageRef, deleteObject } from './firebase.js';
 
 const uploadsContainer = document.getElementById('uploadsContainer');
 const linkInput = document.getElementById('linkInput');
@@ -20,7 +20,7 @@ onValue(dbRef(db, 'uploads'), snapshot => {
     `;
 
     div.querySelector('.deleteBtn').addEventListener('click', () => {
-      deleteObject(sRef(storage, `uploads/${file.fileName}`));
+      deleteObject(storageRef(storage, `uploads/${file.fileName}`));
       remove(dbRef(db, `uploads/${key}`));
     });
 
@@ -33,6 +33,17 @@ sendLinkBtn.addEventListener('click', () => {
   const link = linkInput.value.trim();
   if (!link) return alert('Enter a link');
   set(dbRef(db, 'link'), link)
-    .then(() => alert('Link sent to users!'));
+    .then(() => alert('Link sent!'));
   linkInput.value = '';
 });
+
+// Delete link button
+const deleteLinkBtn = document.createElement('button');
+deleteLinkBtn.textContent = 'Delete Link';
+deleteLinkBtn.className = 'danger-btn';
+deleteLinkBtn.style.marginTop = '10px';
+deleteLinkBtn.addEventListener('click', () => {
+  remove(dbRef(db, 'link'))
+    .then(() => alert('Link deleted!'));
+});
+document.querySelector('section:last-child').appendChild(deleteLinkBtn);
