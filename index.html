@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design Snap Studios</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>📸 Design Snap Studios</h1>
+    <p>Upload your photos and get your link within hours!</p>
+  </header>
+
+  <main>
+    <!-- Upload Section -->
+    <section class="upload-box">
+      <h2>Upload Your Photos</h2>
+      <input type="file" id="photoUpload" accept="image/*" multiple>
+      <button id="uploadBtn">Upload</button>
+      <p id="statusMsg"></p>
+      <div id="preview" class="preview-grid"></div>
+    </section>
+
+    <!-- Link Section -->
+    <section class="link-box">
+      <h2>Your Link</h2>
+      <div id="userLink">⏳ Waiting for Design Snap to send your link...</div>
+    </section>
+
+    <!-- Chat Section -->
+    <section class="chat-box">
+      <h2>Chat with Design Snap</h2>
+      <div id="chatMessages" class="chat-messages"></div>
+      <input type="text" id="chatInput" placeholder="Type your message...">
+      <button id="sendMsg">Send</button>
+    </section>
+  </main>
+
+  <!-- Firebase -->
+  <script type="module" src="firebase.js"></script>
+  <!-- User JS -->
+  <script type="module" src="user.js"></script>
+</body>
+</html>
