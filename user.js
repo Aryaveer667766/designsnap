@@ -1,5 +1,5 @@
 // user.js
-import { db, storage, dbRef, storageRef, push, onValue, uploadBytesResumable, getDownloadURL } from './firebase.js';
+import { db, storage, dbRef, sRef, push, onValue, uploadBytesResumable, getDownloadURL } from './firebase.js';
 
 const uploadInput = document.getElementById('photoUpload');
 const uploadBtn = document.getElementById('uploadBtn');
@@ -7,6 +7,7 @@ const statusMsg = document.getElementById('statusMsg');
 const previewDiv = document.getElementById('preview');
 const userLinkDiv = document.getElementById('userLink');
 
+// Preview selected images
 uploadInput.addEventListener('change', () => {
   previewDiv.innerHTML = '';
   Array.from(uploadInput.files).forEach(file => {
@@ -16,6 +17,7 @@ uploadInput.addEventListener('change', () => {
   });
 });
 
+// Upload images
 uploadBtn.addEventListener('click', () => {
   const files = Array.from(uploadInput.files);
   if (!files.length) return alert('Select files first');
@@ -23,14 +25,19 @@ uploadBtn.addEventListener('click', () => {
   statusMsg.textContent = 'Uploading... ⏳';
 
   files.forEach(file => {
-    const sRef = storageRef(storage, `uploads/${file.name}`);
-    const uploadTask = uploadBytesResumable(sRef, file);
+    const fileRef = sRef(storage, `uploads/${file.name}`);
+    const uploadTask = uploadBytesResumable(fileRef, file);
 
-    uploadTask.on('state_changed', null, err => console.error(err), () => {
-      getDownloadURL(uploadTask.snapshot.ref).then(url => {
-        push(dbRef(db, 'uploads'), { fileName: file.name, url });
-      });
-    });
+    uploadTask.on(
+      'state_changed',
+      null,
+      err => console.error(err),
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then(url => {
+          push(dbRef(db, 'uploads'), { fileName: file.name, url });
+        });
+      }
+    );
   });
 
   statusMsg.textContent = 'Uploaded successfully! Wait for the link.';
@@ -38,7 +45,7 @@ uploadBtn.addEventListener('click', () => {
   uploadInput.value = '';
 });
 
-// Listen for admin link
+// Listen for admin link and display
 onValue(dbRef(db, 'link'), snapshot => {
   const link = snapshot.val();
   if (link) userLinkDiv.innerHTML = `<a href="${link}" target="_blank">${link}</a>`;
