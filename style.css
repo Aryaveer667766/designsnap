@@ -1,0 +1,175 @@
+/* Global Styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f0f3f7;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: #222;
+  color: #fff;
+  padding: 25px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.2em;
+}
+
+header p {
+  margin-top: 5px;
+  font-size: 1em;
+  color: #ddd;
+}
+
+main {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 0 15px;
+}
+
+/* Sections */
+section {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+section h2 {
+  margin-top: 0;
+  color: #0077ff;
+}
+
+/* Buttons */
+button {
+  background: #0077ff;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  margin-top: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background: #005ed6;
+}
+
+.danger-btn {
+  background: #ff4c4c;
+}
+
+.danger-btn:hover {
+  background: #d43f3f;
+}
+
+/* Upload Preview Grid */
+.preview-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.preview-grid img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin: 5px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+/* Link Box */
+.link-box a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #fff;
+  background: #0077ff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.link-box a:hover {
+  background: #005ed6;
+}
+
+/* Chat Box */
+.chat-box {
+  text-align: left;
+}
+
+.chat-messages {
+  max-height: 250px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+  background: #f9f9f9;
+  margin-bottom: 10px;
+}
+
+.chat-user {
+  text-align: right;
+  background: #0077ff;
+  color: #fff;
+  display: inline-block;
+  padding: 6px 10px;
+  margin: 4px 0;
+  border-radius: 10px;
+  max-width: 70%;
+  word-wrap: break-word;
+}
+
+.chat-admin {
+  text-align: left;
+  background: #e0e0e0;
+  color: #333;
+  display: inline-block;
+  padding: 6px 10px;
+  margin: 4px 0;
+  border-radius: 10px;
+  max-width: 70%;
+  word-wrap: break-word;
+}
+
+/* File Items */
+.file-item {
+  display: inline-block;
+  text-align: center;
+  margin: 5px;
+}
+
+.file-item img {
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+/* Input Fields */
+input[type="text"], input[type="file"], select {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: calc(100% - 22px);
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .preview-grid img {
+    width: 80px;
+    height: 80px;
+  }
+
+  button {
+    width: 100%;
+  }
+}
