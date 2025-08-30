@@ -1,5 +1,5 @@
 // admin.js
-import { db, storage, dbRef, onValue, remove, set, storageRef, deleteObject } from './firebase.js';
+import { db, storage, dbRef, onValue, remove, set, sRef, deleteObject } from './firebase.js';
 
 const uploadsContainer = document.getElementById('uploadsContainer');
 const linkInput = document.getElementById('linkInput');
@@ -23,7 +23,7 @@ onValue(dbRef(db, 'uploads'), snapshot => {
 
     // Delete file
     div.querySelector('.deleteBtn').addEventListener('click', () => {
-      deleteObject(storageRef(storage, `uploads/${file.fileName}`))
+      deleteObject(sRef(storage, `uploads/${file.fileName}`))
         .then(() => remove(dbRef(db, `uploads/${key}`)))
         .catch(err => console.error(err));
     });
