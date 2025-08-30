@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Snap Panel</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>🛠️ Design Snap Panel</h1>
+  <p>Manage uploads, send links, chat with users, and track work.</p>
+</header>
+
+<main>
+  <!-- 1. Uploads Section -->
+  <section class="uploads-list">
+    <h2>Uploads (Sorted by Day)</h2>
+    <div id="uploadsContainer"></div>
+    <button id="bulkDeleteBtn" class="danger-btn">Delete All Uploads</button>
+  </section>
+
+  <!-- 2. Send Link Section -->
+  <section class="link-send">
+    <h2>Send Link to User</h2>
+    <input type="text" id="userIdInput" placeholder="Enter User ID">
+    <input type="text" id="linkInput" placeholder="Enter Link">
+    <button id="sendLinkBtn">Send Link</button>
+  </section>
+
+  <!-- 3. Chat Section -->
+  <section class="chat-box">
+    <h2>Chat with Users</h2>
+    <select id="chatUserSelect">
+      <option value="">Select User</option>
+    </select>
+    <div id="chatMessages" class="chat-messages"></div>
+    <input type="text" id="chatInput" placeholder="Type your message...">
+    <button id="sendMsg">Send</button>
+  </section>
+
+  <!-- 4. Analytics Section -->
+  <section class="analytics">
+    <h2>Analytics</h2>
+    <div id="analyticsData">Total Uploads: 0</div>
+  </section>
+</main>
+
+<!-- Firebase -->
+<script type="module" src="firebase.js"></script>
+<!-- Admin JS -->
+<script type="module" src="admin.js"></script>
+</body>
+</html>
