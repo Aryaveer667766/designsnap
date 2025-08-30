@@ -73,10 +73,33 @@ button:hover {
     background: #e67e22;
 }
 
+/* --- NEW: Progress Bar Styles --- */
+.progress-container {
+    width: 100%;
+    background-color: #222;
+    border-radius: 20px;
+    margin: 20px 0 10px 0;
+    overflow: hidden;
+    display: none; /* Hidden by default */
+}
+
+.progress-bar {
+    width: 0%;
+    height: 12px;
+    background-color: #f39c12;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    transition: width 0.4s ease-in-out;
+}
+/* --- END: Progress Bar Styles --- */
+
+
 /* Status message */
 #statusMsg {
     margin-top: 10px;
     font-weight: 500;
+    min-height: 24px; /* Prevents layout shift */
 }
 
 /* User Link */
@@ -100,7 +123,6 @@ button:hover {
 }
 
 /* Chat messages box */
-/* This selector was changed from #adminChatBox to #chatBox */
 #chatBox {
     flex: 1;
     overflow-y: auto;
@@ -180,6 +202,11 @@ button:hover {
     <input type="file" id="photoUpload" multiple accept="image/*">
     <div id="preview"></div>
     <button id="uploadBtn">Upload Photos</button>
+    
+    <div id="progressContainer" class="progress-container">
+        <div id="progressBar" class="progress-bar"></div>
+    </div>
+    
     <p id="statusMsg"></p>
 
     <h2>Your Link:</h2>
