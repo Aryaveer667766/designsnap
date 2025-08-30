@@ -40,22 +40,23 @@ uploadBtn.addEventListener('click', async () => {
     const files = Array.from(uploadInput.files);
     if (!files.length) return alert('Please select some photos first!');
 
-    // --- Start of Engaging Upload Logic ---
-
+    // --- Start of Updated Progress Logic ---
+    
     let uploadFailed = false;
-    statusMsg.textContent = engagingMessages[0]; // Show the first message immediately
+    const totalFiles = files.length;
+    let filesUploaded = 0;
     let messageIndex = 0;
-
-    // Set an interval to cycle through messages every 2 seconds
-    const uploadInterval = setInterval(() => {
-        messageIndex = (messageIndex + 1) % engagingMessages.length;
-        statusMsg.textContent = engagingMessages[messageIndex];
-    }, 2000);
-
-    // --- End of Engaging Upload Logic ---
-
+    
+    // --- End of Updated Progress Logic ---
 
     for (const file of files) {
+        // --- Update status message for each file ---
+        filesUploaded++;
+        messageIndex = (messageIndex + 1) % engagingMessages.length;
+        const currentMessage = engagingMessages[messageIndex];
+        statusMsg.textContent = `${currentMessage} (Uploading ${filesUploaded} of ${totalFiles})`;
+        // ---
+
         const formData = new FormData();
         formData.append('file', file);
         formData.append('upload_preset', UPLOAD_PRESET);
@@ -76,16 +77,12 @@ uploadBtn.addEventListener('click', async () => {
     }
 
     // --- Final Status Update ---
-
-    clearInterval(uploadInterval); // IMPORTANT: Stop the message cycling
-
     if (uploadFailed) {
         statusMsg.textContent = 'Phew! Most photos are up, but a few were shy. Check the console for details.';
     } else {
         statusMsg.textContent = 'All done! Your photos are ready for their close-up. 📸';
     }
-
-    // --- End of Final Status Update ---
+    // ---
 
     previewDiv.innerHTML = '';
     uploadInput.value = '';
