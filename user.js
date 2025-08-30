@@ -8,10 +8,14 @@ const uploadBtn = document.getElementById('uploadBtn');
 const statusMsg = document.getElementById('statusMsg');
 const previewDiv = document.getElementById('preview');
 const userLinkDiv = document.getElementById('userLink');
-
 const chatBox = document.getElementById('chatBox');
 const chatInput = document.getElementById('chatInput');
 const chatSend = document.getElementById('chatSend');
+
+// --- NEW: Get progress bar elements ---
+const progressContainer = document.getElementById('progressContainer');
+const progressBar = document.getElementById('progressBar');
+
 
 // A list of fun, engaging messages to show during upload
 const engagingMessages = [
@@ -40,22 +44,23 @@ uploadBtn.addEventListener('click', async () => {
     const files = Array.from(uploadInput.files);
     if (!files.length) return alert('Please select some photos first!');
 
-    // --- Start of Updated Progress Logic ---
-    
     let uploadFailed = false;
     const totalFiles = files.length;
     let filesUploaded = 0;
     let messageIndex = 0;
     
-    // --- End of Updated Progress Logic ---
+    // --- NEW: Show and reset the progress bar ---
+    statusMsg.textContent = ''; // Clear old messages
+    progressBar.style.width = '0%';
+    progressContainer.style.display = 'block';
+
 
     for (const file of files) {
-        // --- Update status message for each file ---
         filesUploaded++;
+        
+        // Update the fun message, but without the text counter
         messageIndex = (messageIndex + 1) % engagingMessages.length;
-        const currentMessage = engagingMessages[messageIndex];
-        statusMsg.textContent = `${currentMessage} (Uploading ${filesUploaded} of ${totalFiles})`;
-        // ---
+        statusMsg.textContent = engagingMessages[messageIndex];
 
         const formData = new FormData();
         formData.append('file', file);
@@ -67,22 +72,28 @@ uploadBtn.addEventListener('click', async () => {
                 body: formData
             });
             const data = await res.json();
-
-            // Save URL in Firebase DB
             push(ref(db, 'uploads'), { fileName: file.name, url: data.secure_url });
         } catch (err) {
             console.error(`Upload failed for ${file.name}:`, err);
-            uploadFailed = true; // Mark that at least one upload failed
+            uploadFailed = true;
         }
-    }
 
+        // --- NEW: Update the progress bar width ---
+        const progress = (filesUploaded / totalFiles) * 100;
+        progressBar.style.width = `${progress}%`;
+    }
+    
     // --- Final Status Update ---
     if (uploadFailed) {
         statusMsg.textContent = 'Phew! Most photos are up, but a few were shy. Check the console for details.';
     } else {
         statusMsg.textContent = 'All done! Your photos are ready for their close-up. 📸';
     }
-    // ---
+    
+    // --- NEW: Hide the progress bar after a short delay ---
+    setTimeout(() => {
+        progressContainer.style.display = 'none';
+    }, 2000); // Hide after 2 seconds
 
     previewDiv.innerHTML = '';
     uploadInput.value = '';
@@ -124,7 +135,7 @@ chatSend.addEventListener('click', () => {
 // Send message on Enter key press
 chatInput.addEventListener('keypress', (event) => {
     if (event.key === 'Enter') {
-        event.preventDefault(); // Prevents the default action (like form submission)
-        chatSend.click(); // Trigger the send button's click event
+        event.preventDefault();
+        chatSend.click();
     }
 });
