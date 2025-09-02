@@ -50,7 +50,6 @@
             margin: 0 auto;
         }
         
-        /* --- UPDATED: Navigation Bar Styles --- */
         .navbar {
             position: sticky;
             top: 15px;
@@ -106,7 +105,7 @@
         }
 
         .nav-toggle {
-            display: none; /* Hidden on desktop */
+            display: none;
             background: none;
             border: none;
             color: var(--text-primary);
@@ -114,7 +113,7 @@
         }
 
         .header {
-            margin-top: 80px; /* Add margin to push content below nav */
+            margin-top: 80px;
             margin-bottom: 50px;
         }
         
@@ -437,6 +436,7 @@
                 right: 0;
                 border-radius: 0;
                 padding: 10px 15px;
+                margin-bottom: 0;
             }
             .nav-menu {
                 display: none;
@@ -464,7 +464,7 @@
                 z-index: 1001; /* Above the overlay */
             }
             .header {
-                margin-top: 20px;
+                margin-top: 40px;
             }
             .logo {
                 max-width: 280px;
@@ -478,11 +478,27 @@
             .section-card {
                 padding: 25px;
             }
+            .pricing-grid {
+                grid-template-columns: 1fr; /* Stack pricing plans on mobile */
+            }
+            .testimonial-carousel {
+                overflow-x: auto; /* Enable horizontal scrolling */
+                scroll-snap-type: x mandatory;
+            }
+             .testimonial-carousel::-webkit-scrollbar {
+                display: none; /* Hide scrollbar for a cleaner look */
+            }
+            .testimonial-track {
+                animation: none; /* Disable CSS animation on mobile */
+                width: max-content; /* Allow track to be as wide as its content */
+            }
+            .testimonial-card {
+                scroll-snap-align: center; /* Snap cards to center on scroll */
+            }
             .testimonial-carousel:before, .testimonial-carousel:after {
-                width: 30px;
+                display: none; /* Hide fades on mobile scroller */
             }
         }
-
     </style>
 </head>
 <body>
@@ -584,7 +600,7 @@
 
                 <img src="https://yt3.googleusercontent.com/iZ6sYwrQTHIOKZIEBeFU1VXWved8RPCPlvZoFQQUpx2Lcws1qu0OHwTo8BgXXyFYhoMo_E8nheE=s900-c-k-c0x00ffffff-no-rj" alt="Next Toppers Logo" class="partner-logo">
 
-            </div>
+                </div>
         </section>
 
         <section id="testimonials" class="section-card">
@@ -627,34 +643,6 @@
                                 <div class="author">Aman Dhattarwal<span>Founder, Apni Kaksha</span></div>
                             </div>
                         </div>
-                        <div class="testimonial-card">
-                            <p class="quote">"I was struggling to find time for detailed notes. Design Snap delivered high-quality, researched PPTs that my students love."</p>
-                           <div class="author-info">
-                                <img src="https://placehold.co/100x100/50E3C2/FFFFFF?text=RK" alt="Rajesh Kumar">
-                                <div class="author">Rajesh Kumar<span>Science Coordinator</span></div>
-                            </div>
-                        </div>
-                        <div class="testimonial-card">
-                            <p class="quote">"The clarity and simplicity of their slides make teaching complex subjects so much easier. Highly recommended for any educator."</p>
-                           <div class="author-info">
-                                <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcT1H7tqseffRz9c4hpVhowWfgvXbhThZ6tSy6XO7ufR4-fwd0E9s6xvUg1piM8PLA6--s_U2UjapS7r0_XMjD-ajJgkInCfRZZoga6gU9y6rg" alt="Khan Sir">
-                                <div class="author">Khan Sir<span>Director, Khan GS Research</span></div>
-                            </div>
-                        </div>
-                        <div class="testimonial-card">
-                            <p class="quote">"A truly professional service that understands the needs of modern teaching. The interactive elements are a huge plus."</p>
-                           <div class="author-info">
-                                <img src="https://yt3.googleusercontent.com/aaGAYtlmbJtkZjOHRkmul8I1bYrvNMnf_CnVkejaHfi-HW_7Mz7RwdmB8ww1V45tpE8RUV4ZqA=s900-c-k-c0x00ffffff-no-rj" alt="Dear Sir">
-                                <div class="author">Kashif Sir<span>Co-founder, Dear Sir</span></div>
-                            </div>
-                        </div>
-                         <div class="testimonial-card">
-                            <p class="quote">"Outsourcing my presentation design to Design Snap has freed up countless hours for me to focus on lesson planning and student interaction."</p>
-                           <div class="author-info">
-                                <img src="https://placehold.co/100x100/E24A90/FFFFFF?text=AS" alt="Anjali Singh">
-                                <div class="author">Anjali Singh<span>English Teacher, Class 12</span></div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -667,8 +655,8 @@
                     <h3>Premium Design</h3>
                     <div class="price">Custom Quote</div>
                     <ul>
-                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i><strong>Engaging & Modern</strong> Layout</li>
-                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i><strong>Custom Branded</strong> Templates</li>
+                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i>Engaging & Modern Layout</li>
+                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i>Custom Branded Templates</li>
                         <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i>Custom Graphics & Icons</li>
                         <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i>Interactive Elements</li>
                         <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i>Source File Included (.pptx)</li>
@@ -680,9 +668,9 @@
                     <div class="price">Custom Quote</div>
                      <ul>
                         <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i><strong>All Premium Features, Plus:</strong></li>
-                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i><strong>Unlimited Revisions</strong></li>
+                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i>Unlimited Revisions</li>
                         <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i>Best-in-Class Support</li>
-                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i><strong>Priority Timely Delivery</strong></li>
+                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i>Priority Timely Delivery</li>
                         <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i>Dedicated Project Manager</li>
                      </ul>
                      <a href="mailto:contact@designsnap.com?subject=Inquiry about Premium Tutor Service" class="btn">Contact Us</a>
@@ -708,7 +696,7 @@
                         <i data-feather="plus" class="icon"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>The Premium Tutor Service includes unlimited revisions. For per-page plans, one round of minor revisions is included to ensure you're satisfied.</p>
+                        <p>The Premium Tutor Service includes unlimited revisions. For other projects, one round of minor revisions is included to ensure you're satisfied.</p>
                     </div>
                 </div>
                  <div class="faq-item">
@@ -755,7 +743,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             feather.replace();
 
-            // --- NEW: Mobile Navigation Logic ---
             const navToggle = document.getElementById('nav-toggle');
             const navMenu = document.getElementById('nav-menu');
             const navLinks = document.querySelectorAll('.nav-link');
@@ -779,7 +766,6 @@
             });
 
 
-            // FAQ Accordion Logic
             const faqItems = document.querySelectorAll('.faq-item');
             faqItems.forEach(item => {
                 const question = item.querySelector('.faq-question');
@@ -793,9 +779,8 @@
                 });
             });
 
-            // Testimonial Carousel Logic
             const track = document.querySelector('.testimonial-track');
-            if (track) {
+            if (track && window.innerWidth > 768) { // Only clone for desktop carousel
                 const testimonials = Array.from(track.children);
                 testimonials.forEach(testimonial => {
                     const clone = testimonial.cloneNode(true);
@@ -803,7 +788,6 @@
                 });
             }
 
-            // Active Nav Link on Scroll
             const sections = document.querySelectorAll('section[id]');
             const mainNavLinks = document.querySelectorAll('.nav-link');
 
