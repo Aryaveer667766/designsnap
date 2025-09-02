@@ -237,61 +237,6 @@
              transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
-
-        .pricing-toggle {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-        .toggle-label {
-            font-weight: 500;
-            color: var(--text-secondary);
-            transition: color 0.3s ease;
-        }
-        .toggle-label.active {
-            color: var(--text-primary);
-        }
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 50px;
-            height: 28px;
-        }
-        .switch input { 
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #333;
-            transition: .4s;
-            border-radius: 28px;
-        }
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 20px;
-            width: 20px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-        input:checked + .slider {
-            background-color: var(--brand-primary);
-        }
-        input:checked + .slider:before {
-            transform: translateX(22px);
-        }
         
         .partner-grid {
             display: flex;
@@ -386,7 +331,7 @@
             display: block;
             font-weight: 400;
             font-size: 0.9rem;
-            color: var(--text-secondary);
+         A color: var(--text-secondary);
         }
         
         .faq-item {
@@ -543,7 +488,7 @@
                 <div class="process-step">
                     <div class="step-number">01</div>
                     <h3>Choose Your Plan</h3>
-                    <p>Select a subscription plan that best fits your ongoing monthly or yearly needs.</p>
+                    <p>Select a plan that best fits your needs and get in touch for a custom quote.</p>
                 </div>
                 <div class="process-step">
                      <div class="step-number">02</div>
@@ -553,7 +498,7 @@
                 <div class="process-step">
                      <div class="step-number">03</div>
                     <h3>We Design & Create</h3>
-                    <p>Our team gets to work, crafting a professional presentation, usually within 2-3 days.</p>
+                    <p>Our team gets to work, crafting a professional presentation, based on the agreed timeline.</p>
                 </div>
                  <div class="process-step">
                      <div class="step-number">04</div>
@@ -648,53 +593,37 @@
         </section>
 
                 <section class="section-card">
-            <h2><i data-feather="dollar-sign"></i>Flexible Plans for Every Educator</h2>
-            <div class="pricing-toggle">
-                <span class="toggle-label active" data-period="monthly">Monthly</span>
-                <label class="switch">
-                    <input type="checkbox" id="pricingToggle">
-                    <span class="slider round"></span>
-                </label>
-                <span class="toggle-label" data-period="yearly">Yearly (Save 15%)</span>
-            </div>
+            <h2><i data-feather="dollar-sign"></i>Plans Tailored For You</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-top: -15px; margin-bottom: 30px;">Choose a plan that fits your needs. Contact us for a custom quote.</p>
             <div class="pricing-grid">
-                <div class="pricing-plan">
-                    <h3>Starter</h3>
-                    <div class="price" data-monthly="₹1,999" data-yearly="₹19,999">₹1,999<span>/month</span></div>
+                                <div class="pricing-plan">
+                    <h3>Basic Plan</h3>
+                    <div class="price">Custom<span>/ per page</span></div>
+                    <p style="text-align: left;">Ideal for one-off presentations or getting started. Priced based on complexity and page count.</p>
                     <ul>
-                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i>Up to <strong>4 PPTs</strong> per month</li>
-                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i>Standard Templates</li>
-                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i>Text & HD Images</li>
-                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i>3-Day Turnaround</li>
+                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i>Up to <strong>30 slides</strong> per PPT</li>
+                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i>High-Quality Templates</li>
+                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i>Text & HD Image Integration</li>
+                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i>Standard 2-3 Day Turnaround</li>
                         <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i>Email Support</li>
                     </ul>
-                    <a href="mailto:contact@designsnap.com" class="btn">Get Started</a>
+                    <a href="mailto:contact@designsnap.com?subject=Quote for Basic Plan" class="btn">Get a Quote</a>
                 </div>
-                <div class="pricing-plan recommended">
-                    <h3>Professional</h3>
-                    <div class="price" data-monthly="₹4,999" data-yearly="₹49,999">₹4,999<span>/month</span></div>
+    
+                                <div class="pricing-plan recommended">
+                    <h3>Ultimate Tutor Plan</h3>
+                    <div class="price">Custom<span>/ subscription</span></div>
+                    <p style="text-align: left;">The complete solution for dedicated educators and institutions needing regular, high-quality content.</p>
                     <ul>
-                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i>Up to <strong>10 PPTs</strong> per month</li>
-                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i><strong>Custom Branded</strong> Templates</li>
-                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i><strong>Interactive</strong> Elements</li>
+                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i><strong>All Basic features, plus:</strong></li>
+                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i><strong>Unlimited PPT Requests</strong></li>
+                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i>Custom Branding & Designs</li>
+                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i>Interactive Elements & Animations</li>
+                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i><strong>Priority 1-2 Day Turnaround</strong></li>
                         <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i>Source File Access (.pptx)</li>
-                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i><strong>2-Day</strong> Turnaround</li>
-                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i>Priority Email Support</li>
+                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i><strong>Priority Phone & Chat Support</strong></li>
                     </ul>
-                     <a href="mailto:contact@designsnap.com" class="btn">Get Started</a>
-                </div>
-                <div class="pricing-plan">
-                    <h3>Institution</h3>
-                    <div class="price" data-monthly="Custom" data-yearly="Custom">Custom</div>
-                     <ul>
-                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i><strong>20+ PPTs</strong> per month</li>
-                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i>Fully Custom Designs</li>
-                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i>Advanced Animations</li>
-                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i>Shared Asset Library</li>
-                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i><strong>Dedicated Manager</strong></li>
-                        <li><i data-feather="check-circle" style="color: var(--brand-secondary);"></i>Phone & Chat Support</li>
-                    </ul>
-                     <a href="mailto:contact@designsnap.com" class="btn">Contact Us</a>
+                    <a href="mailto:contact@designsnap.com?subject=Inquiry for Ultimate Tutor Plan" class="btn">Contact Sales</a>
                 </div>
             </div>
         </section>
@@ -717,7 +646,7 @@
                         <i data-feather="plus" class="icon"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Our Professional and Institution plans include a round of revisions for each presentation to ensure you're completely satisfied with the final product.</p>
+                        <p>Our Ultimate Tutor Plan includes revisions to ensure you're completely satisfied. Revisions for the Basic Plan can be discussed during the quoting process.</p>
                     </div>
                 </div>
                  <div class="faq-item">
@@ -726,7 +655,7 @@
                         <i data-feather="plus" class="icon"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>After you sign up for a plan, you can simply email your requirements, handwritten notes, or documents to our dedicated project email address. We'll handle the rest!</p>
+                        <p>After you contact us for a quote, you can simply email your requirements, handwritten notes, or documents to our dedicated project email address. We'll handle the rest!</p>
                     </div>
                 </div>
                  <div class="faq-item">
@@ -735,7 +664,7 @@
                         <i data-feather="plus" class="icon"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Absolutely! The Professional and Institution plans include custom branded templates. Just send us your school's logo and color scheme, and we'll create presentations that match perfectly.</p>
+                        <p>Absolutely! The Ultimate Tutor Plan includes custom branded templates. Just send us your school's logo and color scheme, and we'll create presentations that match perfectly.</p>
                     </div>
                 </div>
             </div>
@@ -763,27 +692,6 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             feather.replace();
-
-            // Pricing Toggle Logic
-            const pricingToggle = document.getElementById('pricingToggle');
-            if (pricingToggle) {
-                const toggleLabels = document.querySelectorAll('.toggle-label');
-                const prices = document.querySelectorAll('.pricing-plan .price');
-
-                pricingToggle.addEventListener('change', () => {
-                    const isYearly = pricingToggle.checked;
-                    toggleLabels.forEach(label => label.classList.toggle('active', label.dataset.period === (isYearly ? 'yearly' : 'monthly')));
-                    prices.forEach(price => {
-                        const monthlyPrice = price.dataset.monthly;
-                        const yearlyPrice = price.dataset.yearly;
-                        if (monthlyPrice === 'Custom') {
-                            price.innerHTML = 'Custom';
-                            return;
-                        }
-                        price.innerHTML = isYearly ? `${yearlyPrice}<span>/year</span>` : `${monthlyPrice}<span>/month</span>`;
-                    });
-                });
-            }
 
             // FAQ Accordion Logic
             const faqItems = document.querySelectorAll('.faq-item');
