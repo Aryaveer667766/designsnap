@@ -296,22 +296,27 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
         
+        /* --- UPDATED: Partner Section Styles --- */
         .partner-grid {
             display: flex;
-            justify-content: space-around;
+            justify-content: center; /* Center the logos */
             align-items: center;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 30px; /* Increased gap */
             margin-top: 20px;
+            background: rgba(0,0,0,0.15);
+            padding: 20px;
+            border-radius: 15px;
         }
         .partner-logo {
-            max-height: 50px;
-            max-width: 120px;
+            max-height: 55px; /* Slightly larger */
+            max-width: 140px;
             filter: grayscale(100%) opacity(0.7);
-            transition: filter 0.3s ease;
+            transition: filter 0.3s ease, transform 0.3s ease;
         }
         .partner-logo:hover {
             filter: grayscale(0%) opacity(1);
+            transform: scale(1.05);
         }
 
         @keyframes scroll {
@@ -425,10 +430,10 @@
             max-height: 200px; 
         }
 
-        /* --- NEW: Mobile Responsive Styles --- */
+        /* --- Mobile Responsive Styles --- */
         @media (max-width: 768px) {
             body {
-                padding-top: 80px; /* Space for fixed navbar */
+                padding-top: 80px;
             }
             .navbar {
                 top: 0;
@@ -461,7 +466,7 @@
             }
             .nav-toggle {
                 display: block;
-                z-index: 1001; /* Above the overlay */
+                z-index: 1001;
             }
             .header {
                 margin-top: 40px;
@@ -479,24 +484,10 @@
                 padding: 25px;
             }
             .pricing-grid {
-                grid-template-columns: 1fr; /* Stack pricing plans on mobile */
-            }
-            .testimonial-carousel {
-                overflow-x: auto; /* Enable horizontal scrolling */
-                scroll-snap-type: x mandatory;
-            }
-             .testimonial-carousel::-webkit-scrollbar {
-                display: none; /* Hide scrollbar for a cleaner look */
-            }
-            .testimonial-track {
-                animation: none; /* Disable CSS animation on mobile */
-                width: max-content; /* Allow track to be as wide as its content */
-            }
-            .testimonial-card {
-                scroll-snap-align: center; /* Snap cards to center on scroll */
+                grid-template-columns: 1fr;
             }
             .testimonial-carousel:before, .testimonial-carousel:after {
-                display: none; /* Hide fades on mobile scroller */
+                width: 30px;
             }
         }
     </style>
@@ -600,7 +591,8 @@
 
                 <img src="https://yt3.googleusercontent.com/iZ6sYwrQTHIOKZIEBeFU1VXWved8RPCPlvZoFQQUpx2Lcws1qu0OHwTo8BgXXyFYhoMo_E8nheE=s900-c-k-c0x00ffffff-no-rj" alt="Next Toppers Logo" class="partner-logo">
 
-                </div>
+                
+                 </div>
         </section>
 
         <section id="testimonials" class="section-card">
@@ -641,6 +633,34 @@
                            <div class="author-info">
                                 <img src="https://yt3.googleusercontent.com/Pu4tOoOIwq-MSZ1J1-GQuWbEaDppYESaE9uIMTaTXybQD8xFyRmCawPucKeOVuE4iN385CYn5g=s900-c-k-c0x00ffffff-no-rj" alt="Aman Dhattarwal">
                                 <div class="author">Aman Dhattarwal<span>Founder, Apni Kaksha</span></div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <p class="quote">"I was struggling to find time for detailed notes. Design Snap delivered high-quality, researched PPTs that my students love."</p>
+                           <div class="author-info">
+                                <img src="https://placehold.co/100x100/50E3C2/FFFFFF?text=RK" alt="Rajesh Kumar">
+                                <div class="author">Rajesh Kumar<span>Science Coordinator</span></div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <p class="quote">"The clarity and simplicity of their slides make teaching complex subjects so much easier. Highly recommended for any educator."</p>
+                           <div class="author-info">
+                                <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcT1H7tqseffRz9c4hpVhowWfgvXbhThZ6tSy6XO7ufR4-fwd0E9s6xvUg1piM8PLA6--s_U2UjapS7r0_XMjD-ajJgkInCfRZZoga6gU9y6rg" alt="Khan Sir">
+                                <div class="author">Khan Sir<span>Director, Khan GS Research</span></div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <p class="quote">"A truly professional service that understands the needs of modern teaching. The interactive elements are a huge plus."</p>
+                           <div class="author-info">
+                                <img src="https://yt3.googleusercontent.com/aaGAYtlmbJtkZjOHRkmul8I1bYrvNMnf_CnVkejaHfi-HW_7Mz7RwdmB8ww1V45tpE8RUV4ZqA=s900-c-k-c0x00ffffff-no-rj" alt="Dear Sir">
+                                <div class="author">Kashif Sir<span>Co-founder, Dear Sir</span></div>
+                            </div>
+                        </div>
+                         <div class="testimonial-card">
+                            <p class="quote">"Outsourcing my presentation design to Design Snap has freed up countless hours for me to focus on lesson planning and student interaction."</p>
+                           <div class="author-info">
+                                <img src="https://placehold.co/100x100/E24A90/FFFFFF?text=AS" alt="Anjali Singh">
+                                <div class="author">Anjali Singh<span>English Teacher, Class 12</span></div>
                             </div>
                         </div>
                     </div>
@@ -743,6 +763,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             feather.replace();
 
+            // --- Mobile Navigation Logic ---
             const navToggle = document.getElementById('nav-toggle');
             const navMenu = document.getElementById('nav-menu');
             const navLinks = document.querySelectorAll('.nav-link');
@@ -766,6 +787,7 @@
             });
 
 
+            // FAQ Accordion Logic
             const faqItems = document.querySelectorAll('.faq-item');
             faqItems.forEach(item => {
                 const question = item.querySelector('.faq-question');
@@ -779,8 +801,9 @@
                 });
             });
 
+            // Testimonial Carousel Logic
             const track = document.querySelector('.testimonial-track');
-            if (track && window.innerWidth > 768) { // Only clone for desktop carousel
+            if (track) {
                 const testimonials = Array.from(track.children);
                 testimonials.forEach(testimonial => {
                     const clone = testimonial.cloneNode(true);
@@ -788,6 +811,7 @@
                 });
             }
 
+            // Active Nav Link on Scroll
             const sections = document.querySelectorAll('section[id]');
             const mainNavLinks = document.querySelectorAll('.nav-link');
 
