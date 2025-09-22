@@ -6,149 +6,115 @@
   <title>Expense Tracker</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     :root{
-      --bg1: linear-gradient(135deg,#0f172a 0%, #0b2447 50%, #07142b 100%);
-      --card:#0b1220cc;
-      --glass: rgba(255,255,255,0.04);
-      --accent: linear-gradient(90deg,#7c3aed,#06b6d4);
+      --bg1: linear-gradient(135deg,#020617 0%, #0f172a 50%, #020617 100%);
+      --card: rgba(15, 23, 42, 0.8);
+      --glass: rgba(255,255,255,0.03);
+      --accent: linear-gradient(90deg,#a855f7,#38bdf8);
+      --accent-hover: linear-gradient(90deg,#9333ea,#0ea5e9);
       --glass-2: rgba(255,255,255,0.02);
-      --muted: rgba(255,255,255,0.65);
-      --success: #10b981;
+      --muted: rgba(255,255,255,0.55);
+      --success: #22c55e;
       --danger: #ef4444;
       --edit: #3b82f6;
-      --wishlist-grad: linear-gradient(180deg, rgba(30,58,138,0.5), rgba(15,23,42,0.5));
+      --wishlist-grad: linear-gradient(180deg, rgba(30,58,138,0.4), rgba(15,23,42,0.4));
     }
     *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
     html,body{height:100%;margin:0;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
     body{
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(99,102,241,0.08), transparent),
-                  radial-gradient(800px 400px at 90% 90%, rgba(6,182,212,0.05), transparent),
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(168, 85, 247, 0.08), transparent),
+                  radial-gradient(800px 400px at 90% 90%, rgba(56, 189, 248, 0.06), transparent),
                   var(--bg1);
-      color:#e6eef8;
+      color:#e2e8f0;
       -webkit-font-smoothing:antialiased;
     }
     .wrap{width:100%;max-width:1100px;margin:0 auto;padding:16px;overflow:hidden}
     header{display:flex;gap:12px;align-items:center;margin-bottom:18px}
     .logo{display:flex;align-items:center;gap:14px}
-    .logo .mark{width:48px;height:48px;border-radius:12px;background:var(--accent);display:grid;place-items:center;font-weight:800;color:#fff;font-size:20px;box-shadow:0 6px 22px rgba(15,23,42,0.6);flex-shrink:0}
-    h1{margin:0;font-size:18px}
-    p.lead{margin:0;color:var(--muted);font-size:13px;display:none}
+    .logo .mark{width:48px;height:48px;border-radius:12px;background:var(--accent);display:grid;place-items:center;font-weight:800;color:#fff;font-size:20px;box-shadow:0 8px 30px rgba(0,0,0,0.4);flex-shrink:0}
+    h1{margin:0;font-size:20px; font-weight: 700; text-shadow: 0 2px 10px rgba(0,0,0,0.3);}
+    p.lead{margin:4px 0 0;color:var(--muted);font-size:13px;display:none}
 
     .grid{display:grid;grid-template-columns:1fr;gap:18px}
 
-    /* left panel (form + summary) */
-    .panel{background:linear-gradient(180deg,var(--card), rgba(11,18,32,0.8));padding:16px;border-radius:12px}
+    .panel{background:linear-gradient(180deg,var(--card), rgba(11,18,32,0.8));padding:16px;border-radius:16px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);}
     .form-row{display:flex;gap:10px;margin-bottom:10px}
-    label{font-size:12px;color:var(--muted);display:block;margin-bottom:6px}
+    label{font-size:12px;color:var(--muted);display:block;margin-bottom:6px; font-weight: 500;}
     input, select, textarea{
-      width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit;font-size:14px;outline:none
+      width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.05);background: rgba(0,0,0,0.15);color:inherit;font-size:14px;outline:none; transition: all 0.2s ease;
     }
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.55)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 8px center;
+      background-size: 16px;
+      padding-right: 32px;
+    }
+    select option {
+      background: #0f172a;
+      color: #e2e8f0;
+    }
+    input:focus, select:focus, textarea:focus { border-color: rgba(56, 189, 248, 0.5); box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);}
     textarea{min-height:90px;resize:vertical}
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;background:var(--accent);color:white;border:0;cursor:pointer;font-weight:600;font-size:14px;}
-    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.04)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;border-radius:10px;background:var(--accent);color:white;border:0;cursor:pointer;font-weight:600;font-size:14px; transition: all 0.2s ease; text-shadow: 0 1px 2px rgba(0,0,0,0.2);}
+    .btn:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.08)}
+    .btn.ghost:hover { background: rgba(255,255,255,0.05); }
     .summary{display:flex;gap:10px;margin-top:14px}
     .stat{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:10px;border-radius:10px;background:var(--glass)}
     .small{font-size:12px;color:var(--muted)}
     .big{font-size:20px;font-weight:700}
 
-    /* right list */
     .list-wrap{display:flex;flex-direction:column;gap:12px}
-    .search-row{display:flex;gap:10px;align-items:center}
-    .control{display:flex;gap:8px;margin-left:auto}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:12px;border-radius:10px}
+    .card{background:linear-gradient(180deg, rgba(30, 41, 59, 0.3), rgba(15, 23, 42, 0.3));padding:12px;border-radius:12px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);}
     
-    .expense-swipe-container{position:relative;overflow:hidden;border-radius:10px;}
+    .expense-swipe-container{position:relative;overflow:hidden;border-radius:12px; touch-action: pan-y; opacity: 0; transform: scale(0.95); animation: item-in 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;}
+    @keyframes item-in { to { opacity: 1; transform: scale(1); } }
     .expense-actions{position:absolute;top:0;height:100%;display:flex;align-items:center;justify-content:center;width:80px;color:white;font-weight:600;}
     .expense-actions.left-action{right:0;background:var(--danger);}
     .expense-actions.right-action{left:0;background:var(--edit);}
-    .expense, .wishlist-item{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;padding:12px;border:1px solid rgba(255,255,255,0.02);transition: transform 0.2s ease-out; user-select:none; border-radius:10px;}
+    .expense, .wishlist-item{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;padding:12px;border:1px solid rgba(255,255,255,0.04);transition: transform 0.3s ease-out, background 0.2s ease; user-select:none; border-radius:12px; cursor: grab;}
     .expense { background:linear-gradient(180deg, rgba(30,41,59,0.5), rgba(15,23,42,0.5)); }
     .wishlist-item { background: var(--wishlist-grad); }
+    .expense:hover { background:linear-gradient(180deg, rgba(40,51,69,0.5), rgba(25,33,52,0.5)); }
     
     .left{display:flex;gap:12px;align-items:center}
-    .icon-circle{width:48px;height:48px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));display:grid;place-items:center;font-weight:700;flex-shrink:0;}
+    .icon-circle{width:48px;height:48px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));display:grid;place-items:center;flex-shrink:0;}
+    .icon-circle svg { width: 24px; height: 24px; opacity: 0.8; }
     .meta{display:flex;flex-direction:column}
-    .meta .title{font-weight:700}
+    .meta .title{font-weight:600}
     .meta .sub{font-size:12px;color:var(--muted)}
-    .actions{display:none;gap:8px} /* Hidden on mobile, swipe is used instead */
-    .pill{padding:6px 8px;border-radius:999px;background:var(--glass-2);font-size:12px}
 
-    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
-
-    /* modal */
-    .modal-back{position:fixed;inset:0;background:rgba(2,6,23,0.8);backdrop-filter:blur(5px);display:none;place-items:center;padding:26px;z-index:100}
-    .modal-back.show{display:grid}
-    .modal{width:100%;max-width:480px;background:linear-gradient(180deg,#061428,#0b1830);padding:18px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5);}
-
-    /* Success Popup */
-    .success-popup {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) scale(0.8);
-        background: linear-gradient(180deg, #0b1830, #061428);
-        padding: 24px;
-        border-radius: 50%;
-        width: 120px;
-        height: 120px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 200;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
-    .success-popup.show {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 1;
-        visibility: visible;
-    }
-    .success-popup svg {
-        width: 60px;
-        height: 60px;
-    }
-    .checkmark {
-        stroke: var(--success);
-        stroke-width: 3;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        stroke-dasharray: 100;
-        stroke-dashoffset: 100;
-        animation: draw-check 0.5s ease-out forwards;
-    }
-    @keyframes draw-check {
-        to {
-            stroke-dashoffset: 0;
-        }
-    }
+    .modal-back{position:fixed;inset:0;background:rgba(2,6,23,0.7);backdrop-filter:blur(8px);display:none;place-items:center;padding:16px;z-index:100}
+    .modal-back.show{display:grid; animation: fade-in 0.3s ease;}
+    .modal{width:100%;max-width:480px;background:linear-gradient(180deg,#0b1830,#061428);padding:24px;border-radius:16px;box-shadow:0 15px 40px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05);}
+    @keyframes fade-in { from { opacity: 0; } to { opacity: 1; }}
     
-    /* Loading Spinner */
-    .spinner {
-      width: 56px;
-      height: 56px;
-      border: 5px solid;
-      border-color: #fff transparent #fff transparent;
-      border-radius: 50%;
-      animation: spin-anim 1.2s linear infinite;
+    .success-popup {
+        position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.8);
+        background: linear-gradient(180deg, #0b1830, #061428); padding: 24px; border-radius: 50%; width: 120px; height: 120px;
+        display: flex; align-items: center; justify-content: center; z-index: 200; opacity: 0; visibility: hidden;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
-    @keyframes spin-anim {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+    .success-popup.show { transform: translate(-50%, -50%) scale(1); opacity: 1; visibility: visible; }
+    .success-popup svg { width: 60px; height: 60px; }
+    .checkmark { stroke: var(--success); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 100; stroke-dashoffset: 100; animation: draw-check 0.5s ease-out forwards; }
+    @keyframes draw-check { to { stroke-dashoffset: 0; } }
+    
+    .spinner { width: 56px; height: 56px; border: 5px solid; border-color: #fff transparent #fff transparent; border-radius: 50%; animation: spin-anim 1.2s linear infinite; }
+    @keyframes spin-anim { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-
-    /* responsive */
     @media (min-width:880px){
       .grid{grid-template-columns:380px 1fr;}
       .logo .mark{width:56px;height:56px}
-      h1{font-size:20px}
+      h1{font-size:22px}
       p.lead{display:block}
-      .actions{display:flex;}
       .wrap{padding:28px}
     }
   </style>
@@ -173,36 +139,37 @@
             <div class="form-row">
               <div style="flex:1">
                 <label>Reason</label>
-                <input id="reason" type="text" placeholder="e.g., Printer ink" />
-              </div>
-              <div style="width:110px">
-                <label>Qty</label>
-                <input id="qty" type="number" min="1" value="1" />
+                <input id="reason" type="text" placeholder="e.g., Office Printer Ink" />
               </div>
             </div>
 
-            <div class="form-row">
+             <div class="form-row">
               <div style="flex:1">
                 <label>Amount (₹)</label>
-                <input id="amount" type="number" placeholder="Amount" />
+                <input id="amount" type="number" placeholder="Total Amount" />
               </div>
-              <div style="width:150px">
-                <label>Date</label>
-                <input id="date" type="date" />
-              </div>
+               <div style="flex: 1;">
+                 <label>Quantity</label>
+                 <div style="display: flex; gap: 8px;">
+                   <input id="qtyValue" type="number" min="1" value="1" style="width: 60%;"/>
+                   <select id="qtyUnit" style="width: 40%;">
+                     <option>pcs</option> <option>kg</option> <option>litre</option> <option>dozen</option> <option>m</option> <option>box</option>
+                   </select>
+                 </div>
+               </div>
             </div>
             
             <div class="form-row">
-              <div style="flex:1">
-                  <label>Category</label>
-                  <select id="category">
-                    <option>General</option>
-                    <option>Office Supplies</option>
-                    <option>Travel</option>
-                    <option>Meals</option>
-                    <option>Marketing</option>
-                  </select>
-              </div>
+                <div style="flex:1">
+                    <label>Category</label>
+                    <select id="category">
+                      <option>General</option> <option>Office</option> <option>Travel</option> <option>Food</option> <option>Marketing</option> <option>Utilities</option>
+                    </select>
+                </div>
+                <div style="width:150px">
+                  <label>Date</label>
+                  <input id="date" type="date" />
+                </div>
             </div>
 
             <div style="margin-top:8px">
@@ -217,8 +184,8 @@
             </div>
 
             <div class="summary">
-              <div class="stat"><div class="small">Total</div><div class="big" id="total">₹0</div></div>
-              <div class="stat"><div class="small">Items</div><div class="big" id="count">0</div></div>
+              <div class="stat"><div class="small">Total Spent</div><div class="big" id="total">₹0</div></div>
+              <div class="stat"><div class="small">Entries</div><div class="big" id="count">0</div></div>
             </div>
           </div>
         </div>
@@ -265,16 +232,21 @@
                         <label>Item Name</label>
                         <input id="wishlistItem" type="text" placeholder="e.g., New Monitor" />
                     </div>
-                    <div style="width:110px">
-                        <label>Qty</label>
-                        <input id="wishlistQty" type="number" min="1" value="1" />
-                    </div>
                 </div>
                 <div class="form-row">
                      <div style="flex:1">
                         <label>Estimated Amount (₹)</label>
                         <input id="wishlistAmount" type="number" placeholder="Amount" />
                     </div>
+                     <div style="flex: 1;">
+                         <label>Quantity</label>
+                         <div style="display: flex; gap: 8px;">
+                           <input id="wishlistQtyValue" type="number" min="1" value="1" style="width: 60%;"/>
+                           <select id="wishlistQtyUnit" style="width: 40%;">
+                             <option>pcs</option> <option>kg</option> <option>litre</option> <option>dozen</option> <option>m</option> <option>box</option>
+                           </select>
+                         </div>
+                       </div>
                 </div>
                  <div style="display:flex;gap:10px;margin-top:12px;align-items:center">
                     <button class="btn" id="addWishBtn">Add to Wishlist</button>
@@ -295,12 +267,17 @@
         <input id="e_reason" type="text" />
         <div class="form-row" style="margin-top:8px">
           <div style="flex:1">
-            <label>Qty</label>
-            <input id="e_qty" type="number" />
-          </div>
-          <div style="width:150px">
             <label>Amount</label>
             <input id="e_amount" type="number" />
+          </div>
+          <div style="flex: 1;">
+            <label>Quantity</label>
+            <div style="display: flex; gap: 8px;">
+              <input id="e_qtyValue" type="number" min="1" value="1" style="width: 60%;"/>
+              <select id="e_qtyUnit" style="width: 40%;">
+                <option>pcs</option> <option>kg</option> <option>litre</option> <option>dozen</option> <option>m</option> <option>box</option>
+              </select>
+            </div>
           </div>
         </div>
         <div style="margin-top:8px;display:flex;gap:8px">
@@ -311,11 +288,7 @@
           <div style="width:200px">
             <label>Category</label>
             <select id="e_category">
-              <option>General</option>
-              <option>Office Supplies</option>
-              <option>Travel</option>
-              <option>Meals</option>
-              <option>Marketing</option>
+              <option>General</option> <option>Office</option> <option>Travel</option> <option>Food</option> <option>Marketing</option> <option>Utilities</option>
             </select>
           </div>
         </div>
@@ -331,7 +304,6 @@
     </div>
   </div>
   
-  <!-- Confirm Modal -->
   <div id="confirmModalBack" class="modal-back">
     <div class="modal">
       <h3 id="confirmTitle" style="margin-top:0;">Are you sure?</h3>
@@ -343,24 +315,18 @@
     </div>
   </div>
 
-  <!-- Loading Modal -->
-  <div id="loadingModalBack" class="modal-back">
-      <div class="spinner"></div>
-  </div>
+  <div id="loadingModalBack" class="modal-back"> <div class="spinner"></div> </div>
   
-  <!-- Success Popup -->
   <div id="successPopup" class="success-popup">
     <svg viewBox="0 0 52 52">
       <path class="checkmark" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
     </svg>
   </div>
 
-  <!-- Firebase (compat) -->
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 
   <script>
-    // --- Your Firebase Config ---
     const firebaseConfig = {
       apiKey: "AIzaSyAZ_c3EaDxSZ6RrNrwQjR_TauJHrPfk_lk",
       authDomain: "designsnap-f3309.firebaseapp.com",
@@ -369,7 +335,6 @@
       storageBucket: "designsnap-f3309.appspot.com",
       messagingSenderId: "741888249963",
       appId: "1:741888249963:web:9540c9f68d6f0d5da9a12e",
-      measurementId: "G-YC8TDQF1MM"
     };
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
@@ -377,16 +342,10 @@
     const wishlistRef = db.ref('wishlist');
 
     // UI refs
-    const reason = document.getElementById('reason'), qty = document.getElementById('qty'), amount = document.getElementById('amount'), date = document.getElementById('date'), category = document.getElementById('category'), notes = document.getElementById('notes'), addBtn = document.getElementById('addBtn'), expensesList = document.getElementById('expensesList'), totalEl = document.getElementById('total'), countEl = document.getElementById('count'), search = document.getElementById('search');
-    
-    // Receipt Scan UI refs
+    const reason = document.getElementById('reason'), qtyValue = document.getElementById('qtyValue'), qtyUnit = document.getElementById('qtyUnit'), amount = document.getElementById('amount'), date = document.getElementById('date'), category = document.getElementById('category'), notes = document.getElementById('notes'), addBtn = document.getElementById('addBtn'), expensesList = document.getElementById('expensesList'), totalEl = document.getElementById('total'), countEl = document.getElementById('count'), search = document.getElementById('search');
     const scanBtn = document.getElementById('scanBtn'), receiptInput = document.getElementById('receiptInput'), loadingModalBack = document.getElementById('loadingModalBack');
-    
-    // Wishlist UI refs
-    const wishlistItemInput = document.getElementById('wishlistItem'), wishlistQtyInput = document.getElementById('wishlistQty'), wishlistAmountInput = document.getElementById('wishlistAmount'), addWishBtn = document.getElementById('addWishBtn'), wishlistContainer = document.getElementById('wishlist');
-    
-    // modal refs
-    const editModalBack = document.getElementById('editModalBack'), e_reason = document.getElementById('e_reason'), e_qty = document.getElementById('e_qty'), e_amount = document.getElementById('e_amount'), e_date = document.getElementById('e_date'), e_category = document.getElementById('e_category'), e_notes = document.getElementById('e_notes');
+    const wishlistItemInput = document.getElementById('wishlistItem'), wishlistQtyValue = document.getElementById('wishlistQtyValue'), wishlistQtyUnit = document.getElementById('wishlistQtyUnit'), wishlistAmountInput = document.getElementById('wishlistAmount'), addWishBtn = document.getElementById('addWishBtn'), wishlistContainer = document.getElementById('wishlist');
+    const editModalBack = document.getElementById('editModalBack'), e_reason = document.getElementById('e_reason'), e_qtyValue = document.getElementById('e_qtyValue'), e_qtyUnit = document.getElementById('e_qtyUnit'), e_amount = document.getElementById('e_amount'), e_date = document.getElementById('e_date'), e_category = document.getElementById('e_category'), e_notes = document.getElementById('e_notes');
     const confirmModalBack = document.getElementById('confirmModalBack'), confirmTitle = document.getElementById('confirmTitle'), confirmText = document.getElementById('confirmText'), confirmYes = document.getElementById('confirmYes'), confirmNo = document.getElementById('confirmNo');
     const successPopup = document.getElementById('successPopup');
 
@@ -398,7 +357,7 @@
     // --- Chart.js Setup ---
     const chartCtx = document.getElementById('categoryChart').getContext('2d');
     let categoryChart;
-    const chartColors = ['#7c3aed', '#06b6d4', '#10b981', '#f59e0b', '#ef4444', '#3b82f6'];
+    const chartColors = ['#a855f7', '#38bdf8', '#22c55e', '#f59e0b', '#ef4444', '#64748b'];
 
     // --- Audio Context for sound ---
     let audioContext;
@@ -409,8 +368,7 @@
         }
         const oscillator = audioContext.createOscillator();
         const gainNode = audioContext.createGain();
-        oscillator.connect(gainNode);
-        gainNode.connect(audioContext.destination);
+        oscillator.connect(gainNode); gainNode.connect(audioContext.destination);
         oscillator.type = 'sine';
         oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
         oscillator.frequency.exponentialRampToValueAtTime(600, audioContext.currentTime + 0.05);
@@ -420,7 +378,6 @@
         oscillator.stop(audioContext.currentTime + 0.3);
     }
 
-    // --- Feedback Functions ---
     function showSuccessFeedback() {
         playSuccessSound();
         const checkmark = successPopup.querySelector('.checkmark');
@@ -431,394 +388,229 @@
         setTimeout(() => successPopup.classList.remove('show'), 1500);
     }
 
-    // --- Custom Modal Logic ---
     function showConfirm(title, text, onConfirm = ()=>{}) {
-        confirmTitle.textContent = title;
-        confirmText.textContent = text;
+        confirmTitle.textContent = title; confirmText.textContent = text;
         confirmModalBack.classList.add('show');
-        
-        confirmYes.onclick = () => {
-            onConfirm();
-            confirmModalBack.classList.remove('show');
-        };
+        confirmYes.onclick = () => { onConfirm(); confirmModalBack.classList.remove('show'); };
         confirmNo.onclick = () => confirmModalBack.classList.remove('show');
     }
 
-    // --- Helpers ---
     const fmtINR = v => '₹' + (Number(v) || 0).toLocaleString('en-IN', {maximumFractionDigits:2});
     const todayISO = () => new Date().toISOString().slice(0,10);
     date.value = todayISO();
 
-    // --- Firebase Listeners ---
-    expensesRef.on('value', snapshot => {
-      allExpenses = snapshot.val() || {};
-      applyFiltersAndRender();
-    });
-    
-    wishlistRef.on('value', snapshot => {
-      allWishes = snapshot.val() || {};
-      renderWishlist(allWishes);
-    });
+    expensesRef.on('value', s => { allExpenses = s.val() || {}; applyFiltersAndRender(); });
+    wishlistRef.on('value', s => { allWishes = s.val() || {}; renderWishlist(allWishes); });
 
-    // --- Main Add Logic ---
     addBtn.addEventListener('click', ()=>{
-      const r = reason.value.trim(), q = Number(qty.value) || 1, a = Number(amount.value) || 0, d = date.value || todayISO(), c = category.value || 'General', n = notes.value.trim();
-      if(!r || !a){
-        showConfirm('Missing Info', 'Please provide at least a reason and amount.');
-        return;
-      }
-      const payload = { reason:r, qty:q, amount:a, date:d, category:c, notes:n, created: Date.now() };
+      const r = reason.value.trim(), qv = Number(qtyValue.value) || 1, qu = qtyUnit.value, a = Number(amount.value) || 0, d = date.value || todayISO(), c = category.value || 'General', n = notes.value.trim();
+      if(!r || !a){ showConfirm('Missing Info', 'Please provide at least a reason and amount.'); return; }
+      const payload = { reason:r, qty_value:qv, qty_unit:qu, amount:a, date:d, category:c, notes:n, created: Date.now() };
       expensesRef.push().set(payload).then(() => {
-        reason.value=''; qty.value=1; amount.value=''; date.value=todayISO(); category.value='General'; notes.value='';
+        reason.value=''; qtyValue.value=1; amount.value=''; date.value=todayISO(); category.value='General'; notes.value='';
         showSuccessFeedback();
       }).catch(err => showConfirm('Save Failed', err.message));
     });
     
     addWishBtn.addEventListener('click', () => {
-        const item = wishlistItemInput.value.trim();
-        const qty = Number(wishlistQtyInput.value) || 1;
-        const amount = Number(wishlistAmountInput.value) || 0;
-        if(!item || !amount) {
-            showConfirm('Missing Info', 'Please provide an item name and estimated amount.');
-            return;
-        }
-        const payload = { item, qty, amount, created: Date.now() };
+        const item = wishlistItemInput.value.trim(), qtyVal = Number(wishlistQtyValue.value) || 1, qtyU = wishlistQtyUnit.value, amt = Number(wishlistAmountInput.value) || 0;
+        if(!item || !amt) { showConfirm('Missing Info', 'Please provide an item name and estimated amount.'); return; }
+        const payload = { item, qty_value: qtyVal, qty_unit: qtyU, amount: amt, created: Date.now() };
         wishlistRef.push().set(payload).then(() => {
-            wishlistItemInput.value = ''; wishlistQtyInput.value = 1; wishlistAmountInput.value = '';
+            wishlistItemInput.value = ''; wishlistQtyValue.value = 1; wishlistAmountInput.value = '';
             showSuccessFeedback();
         }).catch(err => showConfirm('Save Failed', err.message));
     });
     
-    // --- Receipt Scanning ---
     scanBtn.addEventListener('click', () => receiptInput.click());
     receiptInput.addEventListener('change', async (event) => {
         const file = event.target.files[0];
         if (!file) return;
-
         loadingModalBack.classList.add('show');
-
         const reader = new FileReader();
         reader.onloadend = async () => {
             const base64Data = reader.result.split(',')[1];
-            
-            const apiKey = ""; // API Key will be injected by the environment
+            const apiKey = ""; 
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
-
             const payload = {
-                contents: [{
-                    parts: [
-                        { text: `Analyze this receipt image. Extract the following information and provide it in the specified JSON format.
-                          1. "reason": The name of the store or vendor.
-                          2. "amount": The final total amount. Extract only the number, no currency symbols.
-                          3. "date": The date of the transaction in YYYY-MM-DD format. If the date is not found or is invalid, use today's date: ${todayISO()}.
-                          If any field is not found, return an empty string for it. Ensure the output is valid JSON.` 
-                        },
-                        { inlineData: { mimeType: file.type, data: base64Data } }
-                    ]
-                }],
-                generationConfig: {
-                    responseMimeType: "application/json",
-                    responseSchema: {
-                      type: "OBJECT",
-                      properties: {
-                        "reason": { "type": "STRING" },
-                        "amount": { "type": "NUMBER" },
-                        "date": { "type": "STRING" }
-                      }
-                    }
-                }
+                contents: [{ parts: [ { text: `Analyze this receipt. Extract "reason" (store name), "amount" (total), and "date" (YYYY-MM-DD format, use ${todayISO()} if invalid). Respond in valid JSON format only.` }, { inlineData: { mimeType: file.type, data: base64Data } } ] }],
+                generationConfig: { responseMimeType: "application/json", responseSchema: { type: "OBJECT", properties: { "reason": { "type": "STRING" }, "amount": { "type": "NUMBER" }, "date": { "type": "STRING" } } } }
             };
-
             try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
+                const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
                 if (!response.ok) throw new Error(`API Error: ${response.statusText}`);
-
                 const result = await response.json();
                 const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
                 if (text) {
                     const parsed = JSON.parse(text);
                     reason.value = parsed.reason || '';
                     amount.value = parsed.amount || '';
-                    // Validate date format before setting
-                    if (parsed.date && /^\d{4}-\d{2}-\d{2}$/.test(parsed.date)) {
-                        date.value = parsed.date;
-                    } else {
-                        date.value = todayISO();
-                    }
-                } else {
-                    throw new Error("Could not parse receipt data.");
-                }
+                    date.value = (parsed.date && /^\d{4}-\d{2}-\d{2}$/.test(parsed.date)) ? parsed.date : todayISO();
+                } else { throw new Error("Could not parse receipt data."); }
             } catch (error) {
-                console.error("Receipt Scan Error:", error);
                 showConfirm("Scan Failed", "Could not extract details from the receipt. Please enter them manually.");
             } finally {
-                loadingModalBack.classList.remove('show');
-                receiptInput.value = ''; // Reset file input
+                loadingModalBack.classList.remove('show'); receiptInput.value = '';
             }
         };
         reader.readAsDataURL(file);
     });
 
-    // --- Rendering Logic ---
     function applyFiltersAndRender() {
         let expensesToRender = {...allExpenses};
         const searchText = search.value.trim().toLowerCase();
-
         if (searchText) {
-            expensesToRender = Object.keys(expensesToRender)
-                .filter(id => {
-                    const ex = expensesToRender[id];
-                    const itemText = `${ex.reason} ${ex.notes||''} ${ex.category||''}`.toLowerCase();
-                    return itemText.includes(searchText);
-                })
-                .reduce((res, key) => (res[key] = expensesToRender[key], res), {});
+            expensesToRender = Object.keys(expensesToRender).filter(id => `${expensesToRender[id].reason} ${expensesToRender[id].notes||''} ${expensesToRender[id].category||''}`.toLowerCase().includes(searchText)).reduce((res, key) => (res[key] = expensesToRender[key], res), {});
         }
-
         const now = new Date();
         if (currentFilter === 'today') {
             const d = todayISO();
-            expensesToRender = Object.keys(expensesToRender)
-                .filter(id => expensesToRender[id].date === d)
-                .reduce((res, key) => (res[key] = expensesToRender[key], res), {});
+            expensesToRender = Object.keys(expensesToRender).filter(id => expensesToRender[id].date === d).reduce((res, key) => (res[key] = expensesToRender[key], res), {});
         } else if (currentFilter === 'month') {
-            const m = now.getMonth();
-            const y = now.getFullYear();
-            expensesToRender = Object.keys(expensesToRender)
-                .filter(id => {
-                    const dt = new Date(expensesToRender[id].date);
-                    return dt.getMonth() === m && dt.getFullYear() === y;
-                })
-                .reduce((res, key) => (res[key] = expensesToRender[key], res), {});
+            const m = now.getMonth(), y = now.getFullYear();
+            expensesToRender = Object.keys(expensesToRender).filter(id => { const dt = new Date(expensesToRender[id].date); return dt.getMonth() === m && dt.getFullYear() === y; }).reduce((res, key) => (res[key] = expensesToRender[key], res), {});
         }
-        
         renderList(expensesToRender);
         renderChart(expensesToRender);
+    }
+
+    const getCategoryIcon = (category) => {
+        const color = "currentColor";
+        switch (category) {
+            case 'Office': return `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 2H8.6c-.4 0-.8.2-1.1.5-.3.3-.5.7-.5 1.1v12.8c0 .4.2.8.5 1.1.3.3.7.5 1.1.5h9.8c.4 0 .8-.2 1.1-.5.3-.3.5-.7.5-1.1V6.5L15.5 2z"></path><path d="M3 7.6v12.8c0 .4.2.8.5 1.1.3.3.7.5 1.1.5h9.8"></path><path d="M15 2v5h5"></path></svg>`;
+            case 'Travel': return `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>`;
+            case 'Food': return `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15h-4a2 2 0 0 0 0 4h4v-4Z"></path></svg>`;
+            case 'Marketing': return `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"></path><path d="M18 20V4"></path><path d="M6 20v-4"></path></svg>`;
+            case 'Utilities': return `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path></svg>`;
+            default: return `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><line x1="1" y1="12" x2="23" y2="12"></line></svg>`;
+        }
     }
     
     function renderList(expenses){
       expensesList.innerHTML='';
       let total = 0, count=0;
       const sortedKeys = Object.keys(expenses).sort((a,b)=> (expenses[b].created||0)-(expenses[a].created||0));
-      
-      if(sortedKeys.length === 0){
-        expensesList.innerHTML = `<div class='card' style='text-align:center;color:var(--muted)'>No expenses found.</div>`;
-      }
-      
-      sortedKeys.forEach(id => {
+      if(sortedKeys.length === 0){ expensesList.innerHTML = `<div class='card' style='text-align:center;color:var(--muted)'>No expenses found.</div>`; }
+      sortedKeys.forEach((id, index) => {
         const ex = expenses[id];
-        const subTotal = (Number(ex.amount)||0) * (Number(ex.qty)||1);
-        total += subTotal;
-        count += Number(ex.qty)||1;
-
+        total += Number(ex.amount)||0;
         const swipeContainer = document.createElement('div');
         swipeContainer.className = 'expense-swipe-container';
-
+        swipeContainer.style.animationDelay = `${index * 50}ms`;
         swipeContainer.innerHTML = `
           <div class="expense-actions right-action">Edit</div>
           <div class="expense-actions left-action">Delete</div>
           <div class="expense" data-id="${id}">
             <div class="left">
-              <div class="icon-circle">${ex.category ? ex.category[0].toUpperCase() : 'G'}</div>
+              <div class="icon-circle">${getCategoryIcon(ex.category)}</div>
               <div class="meta">
                 <div class="title">${ex.reason}</div>
-                <div class="sub">${ex.category} • ${ex.date} • ${ex.qty} pcs</div>
+                <div class="sub">${ex.category} • ${ex.date} • ${ex.qty_value} ${ex.qty_unit}</div>
                 ${ex.notes ? `<div class="sub" style="margin-top:2px;">${ex.notes}</div>` : ''}
               </div>
             </div>
             <div style="text-align:right;">
-              <div style="font-weight:800;">${fmtINR(subTotal)}</div>
-              <div class="actions">
-                <button class="btn ghost small-btn edit-btn">Edit</button>
-                <button class="btn ghost small-btn delete-btn">Delete</button>
-              </div>
+              <div style="font-weight:700; font-size: 1.05em;">${fmtINR(ex.amount)}</div>
             </div>
           </div>
         `;
         expensesList.appendChild(swipeContainer);
-        
-        const expenseEl = swipeContainer.querySelector('.expense');
-        setupSwipe(expenseEl, id);
-        
-        expenseEl.querySelector('.edit-btn').addEventListener('click', (e) => { e.stopPropagation(); openEdit(id); });
-        expenseEl.querySelector('.delete-btn').addEventListener('click', (e) => { e.stopPropagation(); deleteExpense(id); });
+        setupSwipe(swipeContainer.querySelector('.expense'), id);
       });
-
       totalEl.textContent = fmtINR(total);
-      countEl.textContent = count;
+      countEl.textContent = sortedKeys.length;
     }
 
     function renderWishlist(wishes) {
         wishlistContainer.innerHTML = '';
         const sortedKeys = Object.keys(wishes).sort((a,b) => (wishes[b].created || 0) - (wishes[a].created || 0));
-
-        if (sortedKeys.length === 0) {
-            wishlistContainer.innerHTML = `<div class='card' style='text-align:center;color:var(--muted)'>Your wishlist is empty.</div>`;
-            return;
-        }
-
+        if (sortedKeys.length === 0) { wishlistContainer.innerHTML = `<div class='card' style='text-align:center;color:var(--muted)'>Your wishlist is empty.</div>`; return; }
         sortedKeys.forEach(id => {
             const wish = wishes[id];
             const el = document.createElement('div');
             el.className = 'wishlist-item';
-            
-            const total = (Number(wish.amount) || 0) * (Number(wish.qty) || 1);
-
+            const total = (Number(wish.amount) || 0) * (Number(wish.qty_value) || 1);
             el.innerHTML = `
                 <div class="left">
                     <div class="icon-circle" style="color:#f59e0b;">★</div>
                     <div class="meta">
                         <div class="title">${wish.item}</div>
-                        <div class="sub">${wish.qty} pcs • Est. ${fmtINR(total)}</div>
+                        <div class="sub">${wish.qty_value} ${wish.qty_unit} • Est. ${fmtINR(total)}</div>
                     </div>
                 </div>
-                <div>
-                    <button class="btn ghost small-btn delete-wish-btn">Delete</button>
-                </div>
+                <div> <button class="btn ghost small-btn delete-wish-btn">Delete</button> </div>
             `;
             wishlistContainer.appendChild(el);
-
             el.querySelector('.delete-wish-btn').addEventListener('click', () => deleteWish(id));
         });
     }
     
-    function deleteWish(id) {
-        showConfirm('Delete Wish?', 'This will remove the item from your wishlist.', () => {
-            wishlistRef.child(id).remove();
-        });
-    }
+    function deleteWish(id) { showConfirm('Delete Wish?', 'This will remove the item from your wishlist.', () => wishlistRef.child(id).remove()); }
 
     function renderChart(data){
         const categoryTotals = {};
         Object.values(data).forEach(ex => {
             const cat = ex.category || 'General';
-            const total = (Number(ex.amount) || 0) * (Number(ex.qty) || 1);
-            categoryTotals[cat] = (categoryTotals[cat] || 0) + total;
+            categoryTotals[cat] = (categoryTotals[cat] || 0) + (Number(ex.amount) || 0);
         });
-
-        const labels = Object.keys(categoryTotals);
-        const values = Object.values(categoryTotals);
-        
         if (categoryChart) categoryChart.destroy();
         categoryChart = new Chart(chartCtx, {
             type: 'doughnut',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Expenses',
-                    data: values,
-                    backgroundColor: chartColors,
-                    borderColor: '#0f172a',
-                    borderWidth: 2
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: { color: '#e6eef8', boxWidth: 15, padding: 15 }
-                    }
-                }
-            }
+            data: { labels: Object.keys(categoryTotals), datasets: [{ data: Object.values(categoryTotals), backgroundColor: chartColors, borderColor: '#0f172a', borderWidth: 3 }] },
+            options: { responsive: true, plugins: { legend: { position: 'bottom', labels: { color: '#e2e8f0', boxWidth: 15, padding: 15, font: { weight: '500'} } } } }
         });
     }
 
-    // --- Swipe Logic ---
-    function setupSwipe(el, id){
-        let startX, currentX, deltaX = 0, isSwiping = false;
-        const threshold = 80;
-
-        function handleStart(e){
+    function setupSwipe(el, id) {
+        let startX, deltaX = 0, isSwiping = false; const threshold = 80;
+        function handleStart(e) {
             startX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
-            isSwiping = true;
-            el.style.transition = '';
+            isSwiping = true; el.style.transition = 'none';
+            if (e.type === 'mousedown') { document.addEventListener('mousemove', handleMove); document.addEventListener('mouseup', handleEnd, { once: true }); }
         }
-
-        function handleMove(e){
-            if(!isSwiping) return;
-            currentX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
-            deltaX = currentX - startX;
-            if(Math.abs(deltaX) > 10) el.style.transform = `translateX(${deltaX}px)`;
+        function handleMove(e) {
+            if (!isSwiping) return; e.preventDefault();
+            deltaX = (e.type === 'touchmove' ? e.touches[0].clientX : e.clientX) - startX;
+            el.style.transform = `translateX(${deltaX}px)`;
         }
-
-        function handleEnd(){
-            isSwiping = false;
-            el.style.transition = 'transform 0.2s ease-out';
-            if(deltaX > threshold){ // Swiped right (edit)
-                el.style.transform = `translateX(${threshold}px)`;
-                openEdit(id);
-                setTimeout(()=> el.style.transform = 'translateX(0px)', 300);
-            } else if (deltaX < -threshold){ // Swiped left (delete)
-                el.style.transform = `translateX(-${threshold}px)`;
-                deleteExpense(id);
-                setTimeout(()=> el.style.transform = 'translateX(0px)', 300);
-            } else {
-                el.style.transform = 'translateX(0px)';
-            }
+        function handleEnd() {
+            if (!isSwiping) return; isSwiping = false; el.style.transition = 'transform 0.3s ease-out';
+            if (deltaX > threshold) { openEdit(id); setTimeout(() => { el.style.transform = 'translateX(0px)'; }, 200); }
+            else if (deltaX < -threshold) { deleteExpense(id); el.style.transform = 'translateX(0px)'; }
+            else { el.style.transform = 'translateX(0px)'; }
             deltaX = 0;
+            if (event.type === 'mouseup') { document.removeEventListener('mousemove', handleMove); }
         }
-
-        el.addEventListener('touchstart', handleStart);
-        el.addEventListener('touchmove', handleMove);
-        el.addEventListener('touchend', handleEnd);
+        el.addEventListener('mousedown', handleStart); el.addEventListener('touchstart', handleStart, { passive: false });
+        el.addEventListener('touchmove', handleMove, { passive: false }); el.addEventListener('touchend', handleEnd);
     }
 
-    // --- Edit and Delete ---
     function openEdit(id){
-      const ex = allExpenses[id];
-      if(!ex) return;
-      editingId = id;
-      e_reason.value = ex.reason || ''; e_qty.value = ex.qty || 1; e_amount.value = ex.amount || ''; e_date.value = ex.date || todayISO(); e_category.value = ex.category || 'General'; e_notes.value = ex.notes || '';
+      const ex = allExpenses[id]; if(!ex) return; editingId = id;
+      e_reason.value = ex.reason || ''; e_qtyValue.value = ex.qty_value || 1; e_qtyUnit.value = ex.qty_unit || 'pcs'; e_amount.value = ex.amount || ''; e_date.value = ex.date || todayISO(); e_category.value = ex.category || 'General'; e_notes.value = ex.notes || '';
       editModalBack.classList.add('show');
     }
     
     document.getElementById('saveEdit').addEventListener('click', ()=>{
       if(!editingId) return;
       const payload = {
-        reason: e_reason.value.trim(), qty: Number(e_qty.value) || 1, amount: Number(e_amount.value) || 0, date: e_date.value || todayISO(), category: e_category.value || 'General', notes: e_notes.value.trim(), created: allExpenses[editingId].created || Date.now()
+        reason: e_reason.value.trim(), qty_value: Number(e_qtyValue.value) || 1, qty_unit: e_qtyUnit.value, amount: Number(e_amount.value) || 0, date: e_date.value || todayISO(), category: e_category.value || 'General', notes: e_notes.value.trim(), created: allExpenses[editingId].created || Date.now()
       };
       expensesRef.child(editingId).set(payload).then(()=>{ editModalBack.classList.remove('show'); editingId=null; }).catch(err=>showConfirm('Update failed',err.message));
     });
     
     document.getElementById('cancelEdit').addEventListener('click', ()=>{ editModalBack.classList.remove('show'); editingId=null; });
+    function deleteExpense(id){ showConfirm('Delete Expense?', 'This action cannot be undone.', () => expensesRef.child(id).remove()); }
 
-    function deleteExpense(id){
-      showConfirm('Delete Expense?', 'This action cannot be undone.', () => {
-        expensesRef.child(id).remove();
-      });
-    }
-
-    // --- Event Listeners ---
     search.addEventListener('input', applyFiltersAndRender);
-    ['filterAll', 'filterToday', 'filterMonth'].forEach(id => {
-      document.getElementById(id).addEventListener('click', () => {
-        currentFilter = id.replace('filter', '').toLowerCase();
-        applyFiltersAndRender();
-      });
-    });
-
-    document.getElementById('clearAll').addEventListener('click', ()=>{
-      showConfirm('Clear ALL Expenses?', 'This will permanently delete all expense data from the database.', () => {
-        expensesRef.remove();
-      });
-    });
-
+    ['filterAll', 'filterToday', 'filterMonth'].forEach(id => document.getElementById(id).addEventListener('click', () => { currentFilter = id.replace('filter', '').toLowerCase(); applyFiltersAndRender(); }));
+    document.getElementById('clearAll').addEventListener('click', ()=>showConfirm('Clear ALL Expenses?', 'This will permanently delete all expense data.', () => expensesRef.remove()));
     document.getElementById('exportCsv').addEventListener('click', ()=>{
-      const rows = [['id','reason','qty','amount','date','category','notes','created']];
-      for(const id in allExpenses){
-        const e = allExpenses[id];
-        rows.push([id, e.reason, e.qty, e.amount, e.date, e.category, `"${(e.notes||'')}"`, e.created]);
-      }
-      const csv = rows.map(r=> r.join(',')).join('\n');
-      const blob = new Blob([csv], {type:'text/csv'});
+      const rows = [['id','reason','qty_value','qty_unit','amount','date','category','notes','created']];
+      for(const id in allExpenses){ const e = allExpenses[id]; rows.push([id, e.reason, e.qty_value, e.qty_unit, e.amount, e.date, e.category, `"${(e.notes||'')}"`, e.created]); }
+      const csv = rows.map(r=> r.join(',')).join('\n'); const blob = new Blob([csv], {type:'text/csv'});
       const a = document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='expenses.csv'; a.click();
     });
-
   </script>
 </body>
 </html>
